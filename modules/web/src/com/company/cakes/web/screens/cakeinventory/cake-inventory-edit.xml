@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://cakeInventoryEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.cakes.web.screens.cakeinventory">
+    <data>
+        <instance id="cakeInventoryDc"
+                  class="com.company.cakes.entity.CakeInventory">
+            <view extends="_local">
+                <property name="cake" view="_minimal"/>
+                <property name="store" view="_minimal"/>
+                <property name="refrigerator" view="_minimal">
+                    <property name="store" view="_minimal"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="cakeInventoryDc">
+            <column width="350px">
+                <pickerField id="cakeField" property="cake">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="statusField" property="status"/>
+                <pickerField id="storeField" property="store">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <pickerField id="refrigeratorField" property="refrigerator" enable="false">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

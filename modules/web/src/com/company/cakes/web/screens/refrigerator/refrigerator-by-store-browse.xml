@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://refrigeratorByStoreBrowse.caption"
+        focusComponent="refrigeratorsTable"
+        messagesPack="com.company.cakes.web.screens.refrigerator">
+    <data readOnly="true">
+        <collection id="refrigeratorsDc"
+                    class="com.company.cakes.entity.Refrigerator">
+            <view extends="_local">
+                <property name="store" view="_minimal"/>
+            </view>
+            <loader id="refrigeratorsDl">
+                <query>
+                    <![CDATA[select e from cakes_Refrigerator e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="refrigeratorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="refrigeratorsTable"
+                dataLoader="refrigeratorsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="refrigeratorsTable"
+                    width="100%"
+                    dataContainer="refrigeratorsDc">
+            <actions>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="store"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

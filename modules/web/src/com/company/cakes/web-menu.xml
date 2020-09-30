@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-cakes" insertBefore="administration" caption="mainMsg://menu_config.application-cakes">
+        <item screen="cakes_PriceGorup.browse" caption="mainMsg://menu_config.cakes_PriceGorup.browse"/>
+        <item screen="cakes_Store.browse" caption="mainMsg://menu_config.cakes_Store.browse"/>
+        <item screen="cakes_Refrigerator.browse" caption="mainMsg://menu_config.cakes_Refrigerator.browse"/>
+        <item screen="cakes_Cake.browse" caption="mainMsg://menu_config.cakes_Cake.browse"/>
+        <item screen="cakes_CakeInventory.browse" caption="mainMsg://menu_config.cakes_CakeInventory.browse"/>
+        <item screen="cakes_RefrigeratorByStore.browse"
+              caption="mainMsg://menu_config.cakes_RefrigeratorByStore.browse"/>
+    </menu>
+</menu-config>
