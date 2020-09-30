@@ -1,9 +1,8 @@
 package com.company.cakes.web.screens.cakeinventory;
 
+import com.company.cakes.entity.CakeInventory;
 import com.company.cakes.entity.Refrigerator;
-import com.company.cakes.entity.RefrigeratorBrowseOptions;
 import com.company.cakes.entity.Store;
-import com.company.cakes.web.screens.refrigerator.RefrigeratorBrowse;
 import com.company.cakes.web.screens.refrigerator.RefrigeratorByStoreBrowse;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.ScreenBuilders;
@@ -11,11 +10,9 @@ import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.HasValue;
 import com.haulmont.cuba.gui.components.PickerField;
 import com.haulmont.cuba.gui.screen.*;
-import com.company.cakes.entity.CakeInventory;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @UiController("cakes_CakeInventory.edit")
 @UiDescriptor("cake-inventory-edit.xml")
@@ -49,12 +46,12 @@ public class CakeInventoryEdit extends StandardEditor<CakeInventory> {
 
    @Subscribe("refrigeratorField.lookup")
     protected void refrigeratorFieldLookupActionPerformed(Action.ActionPerformedEvent event) {
-        Store value = storeField.getValue();
+        Store store = storeField.getValue();
         screenBuilders.lookup(Refrigerator.class, this)
                 .withField(refrigeratorField)
                 .withScreenClass(RefrigeratorByStoreBrowse.class) // specific lookup screen
                 .withLaunchMode(OpenMode.DIALOG)    // open as modal dialog
-                //.withOptions(new RefrigeratorBrowseOptions(value))
+                //.withOptions(new RefrigeratorBrowseOptions())
                 .build()
                 .show();
 
