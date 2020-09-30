@@ -3,16 +3,11 @@ package com.company.cakes.web.screens.refrigerator;
 import com.company.cakes.entity.Refrigerator;
 import com.company.cakes.entity.Store;
 import com.company.cakes.web.screens.RefrigeratorBrowseOptions;
-import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.core.global.LoadContext;
-import com.haulmont.cuba.gui.components.GroupTable;
 import com.haulmont.cuba.gui.model.CollectionLoader;
 import com.haulmont.cuba.gui.screen.*;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @UiController("cakes_RefrigeratorByStore.browse")
@@ -25,10 +20,6 @@ public class RefrigeratorByStoreBrowse extends StandardLookup<Refrigerator> impl
 
     @Inject
     private Logger log;
-    @Inject
-    private DataManager dataManager;
-    @Inject
-    private GroupTable<Refrigerator> refrigeratorsTable;
     @Inject
     private CollectionLoader<Refrigerator> refrigeratorsDl;
 
@@ -58,8 +49,7 @@ public class RefrigeratorByStoreBrowse extends StandardLookup<Refrigerator> impl
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
         if (store == null)
-            refrigeratorsDl.setParameter("store", 0);
-            //throw new IllegalStateException("country parameter is null");
+            throw new IllegalStateException("country parameter is null");
         refrigeratorsDl.setParameter("store", store);
         refrigeratorsDl.load();
     }

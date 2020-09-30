@@ -53,7 +53,7 @@ public class CakeInventoryBrowse extends StandardLookup<CakeInventory> {
         Integer result;
         result =  dataManager.loadValue( "select  count(e) from cakes_CakeInventory e, cakes_Cake f where e.cake.id = f.id and f.priceGroup.name = :priceGroup", Integer.class)
                 .parameter("priceGroup", priceGroup).one();
-        log.info("Variable foo = {}", result);
+        //log.info("Variable foo = {}", result);
         return result;
     }
 
