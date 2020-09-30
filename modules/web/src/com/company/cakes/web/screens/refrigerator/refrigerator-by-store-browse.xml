@@ -12,7 +12,7 @@
             </view>
             <loader id="refrigeratorsDl">
                 <query>
-                    <![CDATA[select e from cakes_Refrigerator e]]>
+                    <![CDATA[select e from cakes_Refrigerator e where e.store = :store]]>
                 </query>
             </loader>
         </collection>

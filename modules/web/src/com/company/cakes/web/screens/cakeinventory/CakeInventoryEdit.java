@@ -3,6 +3,7 @@ package com.company.cakes.web.screens.cakeinventory;
 import com.company.cakes.entity.CakeInventory;
 import com.company.cakes.entity.Refrigerator;
 import com.company.cakes.entity.Store;
+import com.company.cakes.web.screens.RefrigeratorBrowseOptions;
 import com.company.cakes.web.screens.refrigerator.RefrigeratorByStoreBrowse;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.ScreenBuilders;
@@ -46,15 +47,15 @@ public class CakeInventoryEdit extends StandardEditor<CakeInventory> {
 
    @Subscribe("refrigeratorField.lookup")
     protected void refrigeratorFieldLookupActionPerformed(Action.ActionPerformedEvent event) {
-        Store store = storeField.getValue();
-        screenBuilders.lookup(Refrigerator.class, this)
+       Store store = storeField.getValue();
+       assert store != null;
+       screenBuilders.lookup(Refrigerator.class, this)
                 .withField(refrigeratorField)
                 .withScreenClass(RefrigeratorByStoreBrowse.class) // specific lookup screen
                 .withLaunchMode(OpenMode.DIALOG)    // open as modal dialog
-                //.withOptions(new RefrigeratorBrowseOptions())
+                .withOptions(new RefrigeratorBrowseOptions(store))
                 .build()
                 .show();
-
     }
 
 

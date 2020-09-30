@@ -8,5 +8,6 @@
         <item screen="cakes_CakeInventory.browse" caption="mainMsg://menu_config.cakes_CakeInventory.browse"/>
         <item screen="cakes_RefrigeratorByStore.browse"
               caption="mainMsg://menu_config.cakes_RefrigeratorByStore.browse"/>
+        <item screen="cakes_RefrigeratorBrowseOptions" caption="mainMsg://menu_config.cakes_RefrigeratorBrowseOptions"/>
     </menu>
 </menu-config>
