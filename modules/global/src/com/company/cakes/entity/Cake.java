@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 })
 @Entity(name = "cakes_Cake")
 @NamePattern("%s|name")
-@Listeners("cakes_CakeChangedListener")
+@Listeners("cakes_CakeChangedListener")// Declaración del listener para el evento BeforeInsert
 public class Cake extends StandardEntity {
     private static final long serialVersionUID = -7199124741907963340L;
 
@@ -33,8 +33,9 @@ public class Cake extends StandardEntity {
     @JoinColumn(name = "PRICE_GROUP_ID")
     private PriceGroup priceGroup;
 
-    @CurrencyValue(currency = "g", labelPosition = CurrencyLabelPosition.RIGHT)
+
     @Column(name = "WEIGHT")
+    @CurrencyValue(currency = "g", labelPosition = CurrencyLabelPosition.RIGHT)//Para mostrar un caracter de "moneda" a la izquierda o derecha del valor
     private Integer weight;
 
     @Column(name = "SKU")

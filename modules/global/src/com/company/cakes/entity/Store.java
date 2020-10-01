@@ -13,10 +13,10 @@ import javax.persistence.Table;
 public class Store extends StandardEntity {
     private static final long serialVersionUID = -4601457600389243747L;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME") // Nombre comercial
     private String name;
 
-    @Column(name = "CODE")
+    @Column(name = "CODE") // Código de tienda/RFC/cualquier cosa similar requerida
     private String code;
 
     public String getCode() {

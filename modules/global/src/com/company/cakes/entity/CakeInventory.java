@@ -1,4 +1,4 @@
-package com.company.cakes.entity;
+package com.company.cakes.entity; //Registro de todos los pasteles individuales, relación uno a muchos con Cake
 
 import com.haulmont.cuba.core.entity.StandardEntity;
 
@@ -13,7 +13,7 @@ public class CakeInventory extends StandardEntity {
     @JoinColumn(name = "CAKE_ID")
     private Cake cake;
 
-    @Column(name = "STATUS")
+    @Column(name = "STATUS") // No usada, pero puede representar el estado de un pastel ejemplo: disponible, caducado, vendido, etc.
     private Integer status;
 
     @ManyToOne(fetch = FetchType.LAZY)
