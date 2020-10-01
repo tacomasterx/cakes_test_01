@@ -1,0 +1,3 @@
+alter table CAKES_CAKE add constraint FK_CAKES_CAKE_ON_PRICE_GROUP foreign key (PRICE_GROUP_ID) references CAKES_PRICE_GORUP(ID);
+create index IDX_CAKES_CAKE_ON_PRICE_GROUP on CAKES_CAKE (PRICE_GROUP_ID);
+create index IDX_CAKES_CAKE_NAME on CAKES_CAKE (NAME);
