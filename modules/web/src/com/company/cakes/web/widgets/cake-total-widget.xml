@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd">
+    <layout>
+        <label id="cakeTotalLabel" value="Total de pasteles:"/>
+        <label id="cakeTotalValue" value="0"/>
+    </layout>
+</fragment>
