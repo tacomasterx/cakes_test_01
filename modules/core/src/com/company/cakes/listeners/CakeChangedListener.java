@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
+
 //@Listeners("cakes_CakeChangedListener") //Esto se agrega a la Entity Cake
 @Component("cakes_CakeChangedListener")
 public class CakeChangedListener  implements
@@ -28,10 +30,12 @@ public class CakeChangedListener  implements
         entity.setSku(uniqueNumbers.getNextNumber("sku")); //Sentencia para modificar la celda a agregar
         //log.info("Variable editado = {}", entity.getSku());
         Long next_number = uniqueNumbers.getNextNumber("group_sku");
-        log.info("Variable editado = {}", next_number );
-        entity.setGroup_sku( "" + getAbbreviation(entity.getPriceGroup()) + getZeroFill(next_number) + next_number.toString() );
-        log.info("Variable editado = {}", "" + getAbbreviation(entity.getPriceGroup()) + getZeroFill(next_number) + next_number.toString() );
+        //log.info("Variable editado = {}", next_number );
+        entity.setGroup_sku( "" + getAbbreviation(entity.getPriceGroup()) + getSmolDate() + getZeroFill(next_number) + next_number.toString() );
+        //log.info("Variable editado = {}", "" + getAbbreviation(entity.getPriceGroup()) + getZeroFill(next_number) + next_number.toString() );
     }
+
+
 
     private String getAbbreviation(PriceGroup price_group){
         String string = dataManager.loadValue("select e.name from cakes_PriceGorup e where e.id = :priceGroup", String.class).parameter("priceGroup", price_group.getId()).one();
@@ -49,6 +53,20 @@ public class CakeChangedListener  implements
             return "";
         }
     }
+
+    private String getSmolDate(){
+        LocalDate localDate = LocalDate.now();
+        String smolYear = "" + localDate.getYear() ;
+        return "" + dateZerofill(localDate.getDayOfMonth()) + dateZerofill(localDate.getMonthValue()) + smolYear.substring(2);
+    }
+
+    private String dateZerofill(Integer number){
+        if (number > 9) {
+            return "" + number;
+        }
+        return "0" + number;
+    }
+
 }
 //Test git
 //Test git 2

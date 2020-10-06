@@ -27,7 +27,7 @@
                 </pickerField>
                 <textField id="weightField" property="weight"/>
                 <textField id="skuField" property="sku" editable="false"/>
-                <textField id="group_skuField" property="group_sku"/>
+                <textField id="group_skuField" property="group_sku" editable="false"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

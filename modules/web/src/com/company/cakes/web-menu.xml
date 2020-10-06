@@ -9,5 +9,6 @@
         <item screen="cakes_RefrigeratorByStore.browse"
               caption="mainMsg://menu_config.cakes_RefrigeratorByStore.browse"/>
         <item screen="cakes_RefrigeratorBrowseOptions" caption="mainMsg://menu_config.cakes_RefrigeratorBrowseOptions"/>
+        <item screen="cakes_DateTestScreen" caption="mainMsg://menu_config.cakes_DateTestScreen"/>
     </menu>
 </menu-config>

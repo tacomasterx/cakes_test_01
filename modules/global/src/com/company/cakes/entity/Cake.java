@@ -42,7 +42,7 @@ public class Cake extends StandardEntity {
     @NumberFormat(pattern = "0000")
     private Long sku;
 
-    @Column(name = "GROUP_SKU", length = 7)
+    @Column(name = "GROUP_SKU", length = 13)
     private String group_sku;
 
 
