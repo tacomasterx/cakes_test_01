@@ -33,14 +33,26 @@ public class Cake extends StandardEntity {
     @JoinColumn(name = "PRICE_GROUP_ID")
     private PriceGroup priceGroup;
 
-
     @Column(name = "WEIGHT")
-    @CurrencyValue(currency = "g", labelPosition = CurrencyLabelPosition.RIGHT)//Para mostrar un caracter de "moneda" a la izquierda o derecha del valor
+    @CurrencyValue(currency = "g", labelPosition = CurrencyLabelPosition.RIGHT)
+//Para mostrar un caracter de "moneda" a la izquierda o derecha del valor
     private Integer weight;
 
     @Column(name = "SKU")
-    @NumberFormat(pattern = "00000000000")
+    @NumberFormat(pattern = "0000")
     private Long sku;
+
+    @Column(name = "GROUP_SKU", length = 7)
+    private String group_sku;
+
+
+    public String getGroup_sku() {
+        return group_sku;
+    }
+
+    public void setGroup_sku(String group_sku) {
+        this.group_sku = group_sku;
+    }
 
     public Long getSku() {
         return sku;

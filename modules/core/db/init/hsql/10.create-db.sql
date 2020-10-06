@@ -30,6 +30,7 @@ create table CAKES_CAKE (
     PRICE_GROUP_ID varchar(36),
     WEIGHT integer,
     SKU bigint,
+    GROUP_SKU varchar(7),
     --
     primary key (ID)
 )^
