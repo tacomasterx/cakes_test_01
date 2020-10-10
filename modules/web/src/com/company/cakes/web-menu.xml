@@ -10,5 +10,6 @@
               caption="mainMsg://menu_config.cakes_RefrigeratorByStore.browse"/>
         <item screen="cakes_RefrigeratorBrowseOptions" caption="mainMsg://menu_config.cakes_RefrigeratorBrowseOptions"/>
         <item screen="cakes_DateTestScreen" caption="mainMsg://menu_config.cakes_DateTestScreen"/>
+        <item screen="cakes_CakePivotTable" caption="mainMsg://menu_config.cakes_CakePivotTable"/>
     </menu>
 </menu-config>
