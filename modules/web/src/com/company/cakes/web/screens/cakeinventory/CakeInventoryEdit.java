@@ -10,9 +10,10 @@ import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.HasValue;
 import com.haulmont.cuba.gui.components.PickerField;
 import com.haulmont.cuba.gui.screen.*;
-//import org.slf4j.Logger;
 
 import javax.inject.Inject;
+
+//import org.slf4j.Logger;
 
 @UiController("cakes_CakeInventory.edit")
 @UiDescriptor("cake-inventory-edit.xml")
@@ -29,17 +30,14 @@ public class CakeInventoryEdit extends StandardEditor<CakeInventory> {
     @Inject
     private ScreenBuilders screenBuilders; // Herramienta para desplegar pantallas
 
-//    @Inject
-//    private Logger log;
-
+    //    @Inject
+    //    private Logger log;
 
     @Subscribe("storeField")
     public void onStoreFieldValueChange(HasValue.ValueChangeEvent<Store> event) { //Función para deshabilitar el campo de refri sino hay tienda seleccionada.
         //log.info("Variable foo = {}", "Field value change");
         refrigeratorField.setEnabled(true);
     }
-
-
 
 // log.info("Variable foo = {}", "Field value change");
 
@@ -55,6 +53,5 @@ public class CakeInventoryEdit extends StandardEditor<CakeInventory> {
                 .build()
                 .show();
     }
-
 
 } //dataManager.loadValue("select e.name from cakes_PriceGorup e", String.class).list();

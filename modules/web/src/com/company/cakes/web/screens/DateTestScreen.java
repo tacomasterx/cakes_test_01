@@ -24,12 +24,13 @@ public class DateTestScreen extends Screen {
 
     @Subscribe("btnShowDate")
     public void onBtnShowDateClick(Button.ClickEvent event) {
+
 //        Date date = dataManager.loadValue("select e.createTs from cakes_Cake e", Date.class).one();
 //        log.info("Variable date = {}", date );
 //        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 //        String smolDate = "" + localDate.getYear() ;
 //        log.info("Variable localDate = {}", "" + localDate.getDayOfMonth() + localDate.getMonthValue() + smolDate.substring(2) );
-
+       
         LocalDate localDate = LocalDate.now();
         String smolYear = "" + localDate.getYear() ;
         //log.info("Variable localDate = {}", "" + localDate.getDayOfMonth() + localDate.getMonthValue() + smolDate.substring(2) );

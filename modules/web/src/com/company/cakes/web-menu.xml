@@ -11,5 +11,7 @@
         <item screen="cakes_RefrigeratorBrowseOptions" caption="mainMsg://menu_config.cakes_RefrigeratorBrowseOptions"/>
         <item screen="cakes_DateTestScreen" caption="mainMsg://menu_config.cakes_DateTestScreen"/>
         <item screen="cakes_CakePivotTable" caption="mainMsg://menu_config.cakes_CakePivotTable"/>
+        <item screen="cakes_CakeInventory.bulkBrowse" caption="mainMsg://menu_config.cakes_CakeInventory.bulkBrowse"/>
+        <item screen="cakes_CakeInventory.bulkEdit" caption="mainMsg://menu_config.cakes_CakeInventory.bulkEdit"/>
     </menu>
 </menu-config>
