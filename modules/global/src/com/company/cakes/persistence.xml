@@ -7,5 +7,6 @@
         <class>com.company.cakes.entity.CakeInventory</class>
         <class>com.company.cakes.entity.Store</class>
         <class>com.company.cakes.entity.Refrigerator</class>
+        <class>com.company.cakes.entity.Exported</class>
     </persistence-unit>
 </persistence>

@@ -75,6 +75,4 @@ public class CakeEdit extends StandardEditor<Cake> {
         }
     }
 
-
-
 }

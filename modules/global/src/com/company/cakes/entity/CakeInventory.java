@@ -13,8 +13,13 @@ public class CakeInventory extends StandardEntity {
     @JoinColumn(name = "CAKE_ID")
     private Cake cake;
 
-    @Column(name = "STATUS") // No usada, pero puede representar el estado de un pastel ejemplo: disponible, caducado, vendido, etc.
+    @Column(name = "STATUS")
+    // No usada, pero puede representar el estado de un pastel ejemplo: disponible, caducado, vendido, etc.
     private Integer status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EXPORTED_ID")
+    private Exported exported;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STORE_ID")
@@ -23,6 +28,14 @@ public class CakeInventory extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "REFRIGERATOR_ID")
     private Refrigerator refrigerator;
+
+    public Exported getExported() {
+        return exported;
+    }
+
+    public void setExported(Exported exported) {
+        this.exported = exported;
+    }
 
     public Refrigerator getRefrigerator() {
         return refrigerator;

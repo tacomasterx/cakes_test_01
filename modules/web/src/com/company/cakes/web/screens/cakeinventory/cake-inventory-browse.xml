@@ -3,17 +3,17 @@
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://cakeInventoryBrowse.caption"
         focusComponent="cakeInventoriesTable"
-        messagesPack="com.company.cakes.web.screens.cakeinventory"
-        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+        messagesPack="com.company.cakes.web.screens.cakeinventory">
     <data readOnly="true">
         <collection id="cakeInventoriesDc"
                     class="com.company.cakes.entity.CakeInventory">
             <view extends="_local">
-                <property name="cake" view="_minimal"/>
-                <property name="store" view="_minimal"/>
-                <property name="refrigerator" view="_minimal">
-                    <property name="store" view="_minimal"/>
+                <property name="cake" view="_minimal">
+                    <property name="priceGroup" view="_minimal"/>
                 </property>
+                <property name="exported" view="_minimal"/>
+                <property name="store" view="_minimal"/>
+                <property name="refrigerator" view="_minimal"/>
             </view>
             <loader id="cakeInventoriesDl">
                 <query>
@@ -24,68 +24,37 @@
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="cakeInventoryTabSheet"
+    <layout expand="cakeInventoriesTable"
             spacing="true">
         <filter id="filter"
                 applyTo="cakeInventoriesTable"
                 dataLoader="cakeInventoriesDl">
             <properties include=".*"/>
         </filter>
-        <tabSheet id="cakeInventoryTabSheet">
-            <tab id="cakeGraphTab" caption="Prices Graph" margin="true,false,false,false" spacing="true"
-            >
-                <chart:pieChart id="cakePriceChart"
-                                height="100%"
-                                titleField="priceGroup"
-                                valueField="quantity"
-                                width="100%">
-                    <chart:legend autoMargins="false"
-                                  marginRight="80"
-                                  markerType="CIRCLE"
-                                  position="RIGHT"/>
-                    <chart:balloon fixedPosition="true"/>
-                    <chart:export/>
-
-
-                    <chart:titles>
-                        <chart:title alpha="1"
-                                     bold="true"
-                                     color="DARKSLATEGREY"
-                                     size="20"
-                                     tabIndex="0"
-                                     text="Gráfica de pasteles"/>
-                        <chart:title alpha="0.5"
-                                     color="BLACK"
-                                     size="12"
-                                     text="Existencias por descuento"/>
-                    </chart:titles>
-                </chart:pieChart>
-            </tab>
-            <tab id="cakeInventoryTab" caption="Cake Inventory Table">
-                <groupTable id="cakeInventoriesTable"
-                                    width="100%"
-                                    dataContainer="cakeInventoriesDc">
-                    <actions>
-                        <action id="create" type="create"/>
-                        <action id="edit" type="edit"/>
-                        <action id="remove" type="remove"/>
-                    </actions>
-                    <columns>
-                        <column id="cake"/>
-                        <column id="status"/>
-                        <column id="store"/>
-                        <column id="refrigerator"/>
-                    </columns>
-                    <rowsCount/>
-                    <buttonsPanel id="buttonsPanel"
-                                  alwaysVisible="true">
-                        <button id="createBtn" action="cakeInventoriesTable.create"/>
-                        <button id="editBtn" action="cakeInventoriesTable.edit"/>
-                        <button id="removeBtn" action="cakeInventoriesTable.remove"/>
-                    </buttonsPanel>
-                </groupTable>
-            </tab>
-        </tabSheet>
+        <groupTable id="cakeInventoriesTable"
+                    width="100%"
+                    dataContainer="cakeInventoriesDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="cake"/>
+                <column id="status"/>
+                <column id="exported"/>
+                <column id="store"/>
+                <column id="refrigerator"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="cakeInventoriesTable.create"/>
+                <button id="editBtn" action="cakeInventoriesTable.edit"/>
+                <button id="removeBtn" action="cakeInventoriesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>

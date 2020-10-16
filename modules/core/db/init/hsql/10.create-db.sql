@@ -48,6 +48,7 @@ create table CAKES_CAKE_INVENTORY (
     --
     CAKE_ID varchar(36),
     STATUS integer,
+    EXPORTED_ID varchar(36),
     STORE_ID varchar(36),
     REFRIGERATOR_ID varchar(36),
     --
@@ -88,3 +89,19 @@ create table CAKES_REFRIGERATOR (
     primary key (ID)
 )^
 -- end CAKES_REFRIGERATOR
+-- begin CAKES_EXPORTED
+create table CAKES_EXPORTED (
+    ID varchar(36) not null,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(255),
+    --
+    primary key (ID)
+)^
+-- end CAKES_EXPORTED
