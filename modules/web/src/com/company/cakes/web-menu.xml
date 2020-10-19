@@ -12,5 +12,9 @@
         <item screen="cakes_CakePivotTable" caption="mainMsg://menu_config.cakes_CakePivotTable"/>
         <item screen="cakes_Exported.browse" caption="mainMsg://menu_config.cakes_Exported.browse"/>
         <item screen="cakes_CakeInventory.browse" caption="mainMsg://menu_config.cakes_CakeInventory.browse"/>
+        <item screen="cakes_InventoryByRefrigeratorOptions"
+              caption="mainMsg://menu_config.cakes_InventoryByRefrigeratorOptions"/>
+        <item screen="cakes_CakeInventory.browseByRefri"
+              caption="mainMsg://menu_config.cakes_CakeInventory.browseByRefri"/>
     </menu>
 </menu-config>

@@ -52,7 +52,7 @@ public class RefrigeratorByStoreBrowse extends StandardLookup<Refrigerator> impl
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) { //Evento antes de desplegar información en pantalla
         if (store == null)
-            throw new IllegalStateException("country parameter is null"); //Mensaje de error en caso de que no haya options.
+            throw new IllegalStateException("Store parameter is null"); //Mensaje de error en caso de que no haya options.
         refrigeratorsDl.setParameter("store", store); // Se le da valor al parámetro del DataLoader
         refrigeratorsDl.load();
     }

@@ -8,7 +8,8 @@
     <layout expand="tabSheet">
         <tabSheet id="tabSheet">
             <tab id="tab" caption="Tab">
-                <button id="btnShowDate"/>
+                <button id="btnShowDate" caption="Test date"/>
+                <button id="btnShowRefri" caption="Ver como tabla"/>
             </tab>
         </tabSheet>
     </layout>
