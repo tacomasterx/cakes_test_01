@@ -41,6 +41,13 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="bulkEdit" type="bulkEdit">
+                    <properties>
+                        <property name="openMode" value="THIS_TAB"/>
+                        <property name="includeProperties" value="status"/>
+                        <property name="columnsMode" value="ONE_COLUMN"/>
+                    </properties>
+                </action>
             </actions>
             <columns>
                 <column id="cake"/>
@@ -56,6 +63,8 @@
                 <button id="editBtn" action="cakeInventoriesTable.edit"/>
                 <button id="removeBtn" action="cakeInventoriesTable.remove"/>
                 <button id="selectAll" caption="Select all"/>
+                <button id="bulkEditBtn" action="cakeInventoriesTable.bulkEdit"/>
+                <button id="remate" caption="Rematar refrigerador"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
