@@ -9,6 +9,7 @@ import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.UiComponents;
+import com.haulmont.cuba.gui.actions.list.BulkEditAction;
 import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.components.data.table.ContainerTableItems;
 import com.haulmont.cuba.gui.model.CollectionContainer;
@@ -17,11 +18,14 @@ import com.haulmont.cuba.gui.model.DataComponents;
 import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory;
-//import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+//import org.slf4j.Logger;
 
 
 @UiController("cakes_DateTestScreen")
@@ -31,7 +35,7 @@ public class DateTestScreen extends Screen {
     @Inject
     private DataManager dataManager;
     @Inject
-    private ComponentsFactory componentsFactory;
+    private ComponentsFactory componentsFactory;  // Librería para Tabsheets y tabs (obsoleta, según)
     @Inject
     private DataComponents dataComponents;
     @Inject
@@ -40,20 +44,19 @@ public class DateTestScreen extends Screen {
 //    private Logger log; // Librería para mostrar datos en consola
     @Inject
     private TabSheet tabSheet;
-
     @Inject
-    private UiComponents uiComponents;
+    private Actions actions;
+    @Inject
+    private UiComponents uiComponents; // Librería para componentes de interfaz excepto Tabs
     @Inject
     private ScreenBuilders screenBuilders;
 
     private List<Refrigerator> refrigerators;
 
 
-    private CollectionContainer<CakeInventory> cakeInventoriesManualDc;
-    private CollectionLoader<CakeInventory> cakeInventoriesManualDl;
-
-    private List<CollectionContainer<CakeInventory>> cakeInventoryDcArray;
-    private List<CollectionLoader<CakeInventory>> cakeInventoryDlArray;
+    private List<CollectionContainer<CakeInventory>> cakeInventoryDcArray = new ArrayList<>();   // Crear arreglo para data containers
+    private List<CollectionLoader<CakeInventory>> cakeInventoryDlArray = new ArrayList<>();     // Crear arreglo para data loader de cada container
+    private List<Table<CakeInventory>> tableListt = new ArrayList<>();                          // Crear arreglo para las tablas generadas
 
     @Subscribe("btnShowDate")
     public void onBtnShowDateClick(Button.ClickEvent event) {// Botón usado simplemente para aprender a manejar las fechas
@@ -69,30 +72,33 @@ public class DateTestScreen extends Screen {
     public void onInit(InitEvent event) { // Acciones que deben tomarse durante la inicialización
         refrigerators = dataManager.loadValue("select e from cakes_Refrigerator e", Refrigerator.class).list();
         //log.info("Variable view = {}", cakeInventoriesManualDc.getItems().size());
-        createManualLoader(refrigerators.get(1));
+
         for (int i = 0; i < refrigerators.size(); i++) {
 
-
+            createManualLoader(refrigerators.get(i));  // Creación de los containers y loaders pasando un refri como argumento
 
             Label label = componentsFactory.createComponent(Label.class);
             label.setValue("" + refrigerators.get(i).getName());
 
             Table<CakeInventory> table = uiComponents.create(Table.of(CakeInventory.class));  //Intento de creación manual de la tabla
-            table.setItems(new ContainerTableItems<>(cakeInventoriesManualDc));
+            table.setItems(new ContainerTableItems<>(cakeInventoryDcArray.get(i)));             // Llenar tabla con sus respectivos Data containers
+            table.setMultiSelect(true);
+            table.addAction(actions.create(BulkEditAction.class));
+            tableListt.add(table);                                                              //Meter tabla al arreglo
 
-               // Declaración de Components Factory requerida para crear tabs.
+               // Declaraciones de Components Factory requeridas para crear tabs.
             VBoxLayout tabContent = componentsFactory.createComponent(VBoxLayout.class);
             tabContent.setSpacing(true);
             tabContent.setMargin(true, false, true, false);
-
-            tabContent.add(label);        //Agregar un elemento de UI a una tab.
-            tabContent.add(table);
-            tabContent.expand(table);
 
             Button showScreenButton = uiComponents.create(Button.class);   // Agregar un botón de forma "programática"
             showScreenButton.setCaption("Mostrar tabla");
             int finalI = i;
             showScreenButton.addClickListener(e -> showRefrigeratorInventory(finalI) );
+
+            tabContent.add(label);        //Agregar un elemento de UI a una tab.
+            tabContent.add(tableListt.get(i));
+            tabContent.expand(table);
             tabContent.add(showScreenButton);
 
 
@@ -104,8 +110,9 @@ public class DateTestScreen extends Screen {
 
     private void createManualLoader(Refrigerator refrigerator) { // Intento de crear un Data Loader para la tabla
 
-        cakeInventoriesManualDc = dataComponents.createCollectionContainer(CakeInventory.class);
-
+        CollectionContainer<CakeInventory> cakeInventoriesManualDc = dataComponents.createCollectionContainer(CakeInventory.class);
+        // Al parecer las views son muy importantes a la hora de trabajar con tablas y formularios.
+        // Agregar todas las clumnas que vayan a ser utilizadas por la tabla para lo que sea.
         View view = new View(CakeInventory.class)
                 .addProperty("status")
                 .addProperty("cake", new View(Cake.class)
@@ -117,21 +124,24 @@ public class DateTestScreen extends Screen {
                 ).addProperty("refrigerator")
                 .addProperty("exported");
 
-        cakeInventoriesManualDl = dataComponents.createCollectionLoader();
+        CollectionLoader<CakeInventory> cakeInventoriesManualDl = dataComponents.createCollectionLoader();
         cakeInventoriesManualDl.setContainer(cakeInventoriesManualDc);
         cakeInventoriesManualDl.setDataContext(dataContext);
         cakeInventoriesManualDl.setQuery("select e from cakes_CakeInventory e where e.refrigerator.id = '" + refrigerator.getId() + "'");
         cakeInventoriesManualDl.setView(view);
 
        // log.info("Variable view = {}", cakeInventoriesManualDc.getItems());  //
+        cakeInventoryDcArray.add(cakeInventoriesManualDc) ;
+        cakeInventoryDlArray.add(cakeInventoriesManualDl) ;
     }
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
-        refrigerators = dataManager.loadValue("select e from cakes_Refrigerator e", Refrigerator.class).list();
-     //   for (int i = 0; i < refrigerators.size(); i++) { }
-        cakeInventoriesManualDl.load();  // Esto parece mejorar un poco el asunto de las tablas pero causa un problema de
+        for (int i = 0; i < refrigerators.size(); i++) {
+        cakeInventoryDlArray.get(i).load();  // Esto parece mejorar un poco el asunto de las tablas pero causa un problema de
         //IllegalStateException: Cannot get unfetched attribute [exported] from detached object com.company.cakes.entity.CakeInventory-04379a92-fd37-7ebb-2243-c59fedd99ff2 [detached].
+        //Error arreglado con lo de la View
+        }
     }
 
 
@@ -163,3 +173,4 @@ public class DateTestScreen extends Screen {
     }
 
 }
+
