@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <metadata xmlns="http://schemas.haulmont.com/cuba/metadata.xsd">
 
-    <metadata-model root-package="com.company.cakes" namespace="cakes"/>
+    <metadata-model root-package="com.company.cakes" namespace="cakes">
+        <class>com.company.cakes.entity.Tip</class>
+        <class>com.company.cakes.entity.CakePivot</class>
+    </metadata-model>
 
 </metadata>

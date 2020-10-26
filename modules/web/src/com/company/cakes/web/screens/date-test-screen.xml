@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://dateTestScreen.caption"
+        messagesPack="com.company.cakes.web.screens">
+    <data>
+
+    </data>
+    <layout expand="tabSheet">
+        <tabSheet id="tabSheet">
+            <tab id="tab" caption="Tab">
+                <button id="btnShowDate" caption="Test date"/>
+                <button id="btnShowRefri" caption="Ver como tabla"/>
+            </tab>
+        </tabSheet>
+    </layout>
+</window>

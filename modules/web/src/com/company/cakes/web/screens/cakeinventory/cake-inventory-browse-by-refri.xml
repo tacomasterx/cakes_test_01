@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://cakeInventoryBrowse.caption"
+        caption="msg://cakeInventoryBrowseByRefri.caption"
         focusComponent="cakeInventoriesTable"
         messagesPack="com.company.cakes.web.screens.cakeinventory">
     <data readOnly="true">
@@ -12,12 +12,14 @@
                     <property name="priceGroup" view="_minimal"/>
                 </property>
                 <property name="exported" view="_minimal"/>
-                <property name="store" view="_minimal"/>
+                <property name="store" view="_minimal">
+                    <property name="code"/>
+                </property>
                 <property name="refrigerator" view="_minimal"/>
             </view>
             <loader id="cakeInventoriesDl">
                 <query>
-                    <![CDATA[select e from cakes_CakeInventory e]]>
+                    <![CDATA[select e from cakes_CakeInventory e where e.refrigerator = :refrigerator]]>
                 </query>
             </loader>
         </collection>
@@ -53,6 +55,7 @@
                 <button id="createBtn" action="cakeInventoriesTable.create"/>
                 <button id="editBtn" action="cakeInventoriesTable.edit"/>
                 <button id="removeBtn" action="cakeInventoriesTable.remove"/>
+                <button id="selectAll" caption="Select all"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

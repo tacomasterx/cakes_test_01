@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://cakePivotTable.caption"
+        messagesPack="com.company.cakes.web.screens.cake" xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <data>
+        <collection id="cakesDc" class="com.company.cakes.entity.CakePivot" view="_local"/>
+    </data>
+    <layout>
+
+        <chart:pivotTable id="cakesPivotTable"
+                          dataContainer="cakesDc"
+                          renderer="HEATMAP">
+            <chart:properties>
+                <chart:property name="id"/>
+                <chart:property name="priceGroup"/>
+                <chart:property name="store"/>
+                <chart:property name="refrigerator"/>
+            </chart:properties>
+            <chart:rows>
+                <chart:row value="priceGroup"/>
+            </chart:rows>
+            <chart:columns>
+                <chart:column value="store"/>
+                <chart:column value="refrigerator"/>
+            </chart:columns>
+            <chart:sortersFunction>
+
+            </chart:sortersFunction>
+        </chart:pivotTable>
+
+
+    </layout>
+</window>

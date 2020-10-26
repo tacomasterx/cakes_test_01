@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://cakeBrowse.caption"
-        focusComponent="cakesTable"
-        messagesPack="com.company.cakes.web.screens.cake">
+        caption="msg://exportedBrowse.caption"
+        focusComponent="exportedsTable"
+        messagesPack="com.company.cakes.web.screens.exported">
     <data readOnly="true">
-        <collection id="cakesDc"
-                    class="com.company.cakes.entity.Cake">
-            <view extends="_local">
-                <property name="priceGroup" view="_minimal"/>
-            </view>
-            <loader id="cakesDl">
+        <collection id="exportedsDc"
+                    class="com.company.cakes.entity.Exported">
+            <view extends="_local"/>
+            <loader id="exportedsDl">
                 <query>
-                    <![CDATA[select e from cakes_Cake e]]>
+                    <![CDATA[select e from cakes_Exported e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="cakesTable"
+    <layout expand="exportedsTable"
             spacing="true">
         <filter id="filter"
-                applyTo="cakesTable"
-                dataLoader="cakesDl">
+                applyTo="exportedsTable"
+                dataLoader="exportedsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="cakesTable"
+        <groupTable id="exportedsTable"
                     width="100%"
-                    dataContainer="cakesDc">
+                    dataContainer="exportedsDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -36,18 +34,13 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="price"/>
-                <column id="priceGroup"/>
-                <column id="weight"/>
-                <column id="sku"/>
-                <column id="group_sku"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="cakesTable.create"/>
-                <button id="editBtn" action="cakesTable.edit"/>
-                <button id="removeBtn" action="cakesTable.remove"/>
+                <button id="createBtn" action="exportedsTable.create"/>
+                <button id="editBtn" action="exportedsTable.edit"/>
+                <button id="removeBtn" action="exportedsTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

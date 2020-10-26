@@ -18,15 +18,15 @@
         <form id="form" dataContainer="cakeDc">
             <column width="350px">
                 <textField id="nameField" property="name"/>
-                <textField id="priceField" property="price"/>
+                <textField id="priceField" property="price" visible="false"/>
                 <pickerField id="priceGroupField" property="priceGroup">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
-                        <action id="clear" type="picker_clear"/>
                     </actions>
                 </pickerField>
                 <textField id="weightField" property="weight"/>
                 <textField id="skuField" property="sku" editable="false"/>
+                <textField id="group_skuField" property="group_sku" editable="false"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
