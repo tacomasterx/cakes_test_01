@@ -23,4 +23,4 @@ public class PriceGroup extends StandardEntity {
     public void setName(String name) {
         this.name = name;
     }
-}
+}//Second deployment
