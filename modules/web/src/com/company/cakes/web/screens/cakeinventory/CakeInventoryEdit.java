@@ -63,6 +63,8 @@ public class CakeInventoryEdit extends StandardEditor<CakeInventory> {
         PriceGroup priceGroup = cake.getPriceGroup();
         if (priceGroup.getName().equals("Gratis") || priceGroup.getName().equals("Regalado"))
             exportedField.setEnabled(false);
+        else
+            exportedField.setEnabled(true);
 
         exportedField.clear();
     }
